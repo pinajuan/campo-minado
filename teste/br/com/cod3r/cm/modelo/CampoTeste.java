@@ -133,4 +133,41 @@ public class CampoTeste {
 		assertTrue(campo22.isAberto() && campo11.isFechado());
 	}
 	
+	@Test
+	void testeObjetivoNaoAlcancado() {
+		campo.minar();
+		assertFalse(campo.objetivoAlcancado());
+	}
+	
+	@Test
+	void testeObjetivoAlcancado() {
+		campo.alternarMarcacao();
+		campo.minar();
+		assertTrue(campo.objetivoAlcancado());
+	}
+	
+	@Test
+	void testeMarcado() {
+		campo.alternarMarcacao();
+		assertEquals("x", campo.toString());
+	}
+	
+	@Test
+	void testeMinado() {
+		campo.abrir();
+		campo.minar();
+		assertEquals("*", campo.toString());
+	}
+	
+	@Test
+	void testeAberto() {
+		campo.abrir();
+		assertEquals(" ", campo.toString());
+	}
+	
+	@Test
+	void testeNaoMarcadoNaoMinadoENaoAberto() {
+		assertEquals("?", campo.toString());
+	}
+	
 }
